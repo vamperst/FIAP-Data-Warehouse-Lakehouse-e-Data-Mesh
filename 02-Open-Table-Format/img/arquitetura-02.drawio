@@ -1,0 +1,257 @@
+<mxfile host="65bd71144e">
+  <diagram name="Arquitetura Lab 02" id="lab02-arch">
+    <mxGraphModel dx="1422" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1000" math="0" shadow="0" background="#F5F6F8">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Lab 02 — Open Table Format: fluxo dos 3 laboratórios" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="20" width="1500" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Apache Iceberg no Amazon Athena — preparação, exercícios e consumo analítico" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=0;fontFamily=Helvetica;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="52" width="1500" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="col1-title" value="1. Setup" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="240" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="col2-title" value="2. Lab 02.1 — Funcionalidades básicas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="370" y="100" width="380" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="col3-title" value="3. Lab 02.2 — Funcionalidades avançadas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="820" y="100" width="380" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="col4-title" value="4. Lab 02.3 — Consumindo tabelas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="100" width="380" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="codespaces-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="140" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="codespaces-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#232F3E;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloud9;" vertex="1" parent="1">
+          <mxGeometry x="156" y="156" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="codespaces-name" value="GitHub Codespaces" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="208" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="codespaces-desc" value="setup_athena_tpcds.sh" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Courier New;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="228" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="290" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#7AA116;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="156" y="306" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-name" value="Amazon S3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="358" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-desc" value="otfs-aula-&lt;account-id&gt;&#xa;TPC-DS preparado" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Courier New;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="378" width="200" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="440" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#DD344C;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="156" y="456" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-name" value="LabRole" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="508" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-desc" value="AWS Academy&#xa;permissões pré-configuradas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="528" width="200" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-area" value="customer_iceberg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F7FF;strokeColor=#0066CC;arcSize=6;dashed=1;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#0066CC;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="350" y="140" width="420" height="650" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-athena-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="180" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-athena-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#8C4FFF;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
+          <mxGeometry x="456" y="196" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-athena-name" value="Amazon Athena" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="248" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-athena-desc" value="Query Editor v2&#xa;workgroup primary" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="268" width="200" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-glue-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="180" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-glue-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#8C4FFF;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
+          <mxGeometry x="656" y="196" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-glue-name" value="Glue Catalog" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="600" y="248" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-glue-desc" value="athena_iceberg_db" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Courier New;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="600" y="268" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-flow-title" value="Operações exercitadas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="320" width="380" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-op-create" value="① CREATE TABLE iceberg + INSERT 2M" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="350" width="380" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-op-update" value="② UPDATE pontual (c_customer_sk = 15)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E6;strokeColor=#CC7A00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="394" width="380" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-op-delete" value="③ DELETE pontual" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC0000;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="438" width="380" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-op-tt" value="④ Time travel (FOR VERSION / FOR TIMESTAMP)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F7FF;strokeColor=#0066CC;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="482" width="380" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-op-evol" value="⑤ Schema evolution (RENAME COLUMN, ADD COLUMN)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#6600CC;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="526" width="380" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-deliv-title" value="Entregável simbólico" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="580" width="380" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lab1-deliv-card" value="3 snapshots consultáveis via time travel:&#xa;• append  (s1)&#xa;• overwrite após UPDATE  (s2)&#xa;• overwrite após DELETE  (s3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFE6;strokeColor=#009933;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=14;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="606" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab1-narrative" value="🗨 Camila (CTO da Olist Lakehouse):&#xa;«Funciona o UPDATE em segundos sem reescrever a tabela toda?»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBE6;strokeColor=#FFAA00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="700" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-area" value="web_sales_iceberg + merge_table" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E6;strokeColor=#CC7A00;arcSize=6;dashed=1;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#CC7A00;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="800" y="140" width="420" height="650" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-athena-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="180" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-athena-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#8C4FFF;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
+          <mxGeometry x="906" y="196" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-athena-name" value="Amazon Athena" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="830" y="248" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-athena-desc" value="MERGE / OPTIMIZE / EXPLAIN" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="830" y="268" width="200" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-glue-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="180" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-glue-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#8C4FFF;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
+          <mxGeometry x="1106" y="196" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-glue-name" value="Glue Catalog" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="248" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-glue-desc" value="athena_iceberg_db" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Courier New;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="268" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-flow-title" value="Evoluções aplicadas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="830" y="320" width="380" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-op-part" value="① Particionamento oculto&#xa;PARTITIONED BY (year(ws_sales_time))" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="830" y="350" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-op-merge" value="② MERGE INTO&#xa;tabela auxiliar com U/I/D em uma única instrução" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E6;strokeColor=#CC7A00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="830" y="414" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-op-opt" value="③ OPTIMIZE&#xa;REWRITE DATA USING BIN_PACK (compactação)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F7FF;strokeColor=#0066CC;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="830" y="478" width="380" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-deliv-title" value="Evidência concreta" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="830" y="546" width="380" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lab2-deliv-card" value="• EXPLAIN ANALYZE com pruning de partição visível&#xa;• 1 snapshot único após MERGE (operation = overwrite)&#xa;• Redução de N arquivos pequenos → 1 arquivo grande" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFE6;strokeColor=#009933;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=14;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="830" y="572" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab2-narrative" value="🗨 Camila volta com 3 problemas de produção:&#xa;dashboard lento, batch noturno do CRM, fragmentação no S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBE6;strokeColor=#FFAA00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="830" y="700" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-area" value="VIEW total_orders_by_warehouse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#6600CC;arcSize=6;dashed=1;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#6600CC;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="140" width="420" height="650" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-athena-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;arcSize=6;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="180" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-athena-icon" value="" style="sketch=0;outlineConnect=0;gradientColor=none;fillColor=#8C4FFF;strokeColor=#FFFFFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
+          <mxGeometry x="1356" y="196" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-athena-name" value="Amazon Athena" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="248" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-athena-desc" value="EXPLAIN / EXPLAIN ANALYZE / VIEW" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#687078;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="268" width="200" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-flow-title" value="Operações exercitadas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="320" width="380" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-op-select" value="① SELECT direto sobre tabelas Iceberg&#xa;(consume os snapshots produzidos antes)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4D7DB;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="350" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-op-explain" value="② EXPLAIN / EXPLAIN ANALYZE&#xa;plano e custo real de execução" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E6;strokeColor=#CC7A00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="414" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-op-view" value="③ CREATE VIEW&#xa;camada lógica para o dashboard executivo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#6600CC;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="478" width="380" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-deliv-title" value="Entregável" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="546" width="380" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lab3-deliv-card" value="VIEW publicada e funcional para BI:&#xa;total_orders_by_warehouse&#xa;(consome web_sales_iceberg do Lab 02.2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFE6;strokeColor=#009933;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=14;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="572" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lab3-narrative" value="🗨 Pedro (analista BI sênior):&#xa;«Como vejo o plano da query? Como publico uma versão simplificada da tabela?»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBE6;strokeColor=#FFAA00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=left;spacingLeft=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="700" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow-setup-lab1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#0066CC;strokeWidth=2;endArrow=classic;endFill=1;" edge="1" parent="1" source="codespaces-card" target="lab1-area">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-lab1-lab2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#CC7A00;strokeWidth=2;endArrow=classic;endFill=1;" edge="1" parent="1" source="lab1-area" target="lab2-area">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-lab2-lab3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6600CC;strokeWidth=2;endArrow=classic;endFill=1;" edge="1" parent="1" source="lab2-area" target="lab3-area">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-title" value="Legenda" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontFamily=Helvetica;fontColor=#232F3E;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="820" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-blue" value="Lab 02.1 (básico)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F7FF;strokeColor=#0066CC;fontSize=11;fontFamily=Helvetica;fontColor=#0066CC;verticalAlign=middle;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="848" width="160" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-orange" value="Lab 02.2 (avançado)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E6;strokeColor=#CC7A00;fontSize=11;fontFamily=Helvetica;fontColor=#CC7A00;verticalAlign=middle;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="260" y="848" width="160" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-purple" value="Lab 02.3 (consumo)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#6600CC;fontSize=11;fontFamily=Helvetica;fontColor=#6600CC;verticalAlign=middle;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="440" y="848" width="160" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-narrative" value="🗨 Stakeholder fictício (storytelling)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBE6;strokeColor=#FFAA00;fontSize=11;fontFamily=Helvetica;fontColor=#232F3E;verticalAlign=middle;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="620" y="848" width="240" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-deliv" value="Entregável simbólico" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFE6;strokeColor=#009933;fontSize=11;fontFamily=Helvetica;fontColor=#009933;verticalAlign=middle;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="880" y="848" width="200" height="32" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

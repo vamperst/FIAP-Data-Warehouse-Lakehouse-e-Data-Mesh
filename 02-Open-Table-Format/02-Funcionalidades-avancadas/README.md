@@ -67,6 +67,33 @@ O particionamento oculto do Iceberg é uma melhoria sobre a abordagem tradiciona
 
 Neste exercício, a tabela será particionada por ano com base em `ws_sales_time`.
 
+### Hive tradicional vs. Iceberg — o que muda na prática
+
+```mermaid
+flowchart LR
+    subgraph HIVE["Hive tradicional"]
+        direction TB
+        H1["Aluno escreve:<br/>WHERE <b>year_partition</b> = 2000<br/>AND ws_sales_time >= ..."]
+        H2["Coluna de partição<br/>fica visível no schema"]
+        H3["Mudou layout? Reescreve<br/>tudo + reescreve queries"]
+        H1 --> H2 --> H3
+    end
+
+    subgraph ICE["Iceberg (oculto)"]
+        direction TB
+        I1["Aluno escreve:<br/>WHERE <b>ws_sales_time</b> >= ..."]
+        I2["Iceberg deriva year() da<br/>coluna de negócio em<br/>tempo de query"]
+        I3["Mudou layout? ALTER<br/>partition spec, sem<br/>tocar queries existentes"]
+        I1 --> I2 --> I3
+    end
+
+    style HIVE fill:#fff5e6,stroke:#cc7a00
+    style ICE fill:#e6f7ff,stroke:#0066cc
+```
+
+> [!NOTE]
+> **Por isso o termo "oculto"**: o consumidor não precisa saber **como** a tabela está particionada para se beneficiar do pruning. Quem escreve a query pensa em **negócio** (`ws_sales_time`); o Iceberg resolve a tradução para **layout físico** (`year(ws_sales_time)`) automaticamente.
+
 ---
 
 <a id="passo-1"></a>
@@ -270,6 +297,39 @@ Se você chegou até aqui, então:
 Ao final desta etapa, você terá usado uma tabela auxiliar para aplicar inserções, atualizações e exclusões condicionais na tabela de destino.
 
 O comando [`MERGE INTO`](https://docs.aws.amazon.com/athena/latest/ug/merge-into-statement.html) é transacional e combina `UPDATE`, `DELETE` e `INSERT` em uma única instrução.
+
+### Como o MERGE roteia cada linha da tabela auxiliar
+
+A tabela `merge_table` traz uma coluna `operation` que indica `U` (update), `I` (insert) ou `D` (delete). O `MERGE INTO` roteia cada linha para a ação correta baseado em **chave de correspondência** + **operação**:
+
+```mermaid
+flowchart TB
+    Source["merge_table (auxiliar)<br/>linhas com operation = U/I/D"]
+    Match{"chave bate em<br/>web_sales_iceberg?<br/>(ws_order_number, ws_item_sk)"}
+    OpMatched{"qual operation?"}
+    Update["UPDATE SET<br/>ws_warehouse_sk = 16<br/>(linhas do depósito 10)"]
+    Delete["DELETE<br/>(linhas do ano 1999<br/>warehouse 9)"]
+    Insert["INSERT<br/>(linhas do ano 2001)"]
+    Target["web_sales_iceberg<br/>destino"]
+
+    Source --> Match
+    Match -->|MATCHED| OpMatched
+    Match -->|NOT MATCHED| Insert
+    OpMatched -->|U| Update
+    OpMatched -->|D| Delete
+    Update --> Target
+    Delete --> Target
+    Insert --> Target
+
+    style Source fill:#e6f7ff,stroke:#0066cc
+    style Target fill:#e6ffe6,stroke:#009933
+    style Update fill:#fff5e6,stroke:#cc7a00
+    style Delete fill:#ffe6e6,stroke:#cc0000
+    style Insert fill:#f0e6ff,stroke:#6600cc
+```
+
+> [!IMPORTANT]
+> **Tudo isso em um único snapshot transacional**. Sem o `MERGE`, você precisaria rodar `INSERT` + `UPDATE` + `DELETE` separados, com 3 snapshots intermediários e janela de inconsistência entre eles. O `MERGE` é a forma canônica de aplicar batches de CDC (Change Data Capture).
 
 ### Etapa 2.1 - Criando a tabela auxiliar
 
@@ -482,6 +542,32 @@ O comando [`OPTIMIZE`](https://docs.aws.amazon.com/athena/latest/ug/optimize-sta
 
 - compactar arquivos pequenos em arquivos maiores
 - mesclar arquivos de exclusão com arquivos de dados
+
+### O que o OPTIMIZE faz fisicamente no S3
+
+```mermaid
+flowchart LR
+    subgraph BEFORE["Antes do OPTIMIZE"]
+        direction TB
+        F1["data/year=2000/<br/>📄 file_001.parquet (12 MB)<br/>📄 file_002.parquet (8 MB)<br/>📄 file_003.parquet (15 MB)<br/>📄 ..._merge_001.parquet (5 MB)<br/>🗑 deletes_001.parquet (2 MB)<br/>🗑 deletes_002.parquet (1 MB)"]
+    end
+
+    OPT["OPTIMIZE ... REWRITE DATA<br/>USING BIN_PACK"]
+
+    subgraph AFTER["Depois do OPTIMIZE"]
+        direction TB
+        F2["data/year=2000/<br/>📄 file_compacted.parquet<br/>(~512 MB, deletes aplicados)<br/><br/>(arquivos pequenos foram<br/>fundidos; arquivos de<br/>exclusão materializados)"]
+    end
+
+    BEFORE --> OPT --> AFTER
+
+    style BEFORE fill:#fff5e6,stroke:#cc7a00
+    style OPT fill:#e6f7ff,stroke:#0066cc
+    style AFTER fill:#e6ffe6,stroke:#009933
+```
+
+> [!IMPORTANT]
+> **`OPTIMIZE` não muda dado de negócio**: nenhuma linha vira diferente, nenhuma coluna é alterada. Só muda **layout físico** dos arquivos — junta os pequenos, materializa os deletes pendentes do merge-on-read. É manutenção pura, como um `VACUUM` em banco transacional.
 
 ---
 

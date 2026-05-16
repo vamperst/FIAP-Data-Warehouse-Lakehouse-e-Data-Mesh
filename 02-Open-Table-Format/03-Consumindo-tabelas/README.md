@@ -168,6 +168,31 @@ Se você chegou até aqui, então:
 
 Ao final desta etapa, você terá inspecionado o plano de execução e o custo computacional de consultas no Athena.
 
+### Diferença prática: `EXPLAIN` vs `EXPLAIN ANALYZE`
+
+```mermaid
+flowchart TB
+    Query["Sua query SQL"]
+
+    Query --> Choice{"Você precisa<br/>do quê?"}
+
+    Choice -->|"Plano de execução<br/>(o que a engine PRETENDE fazer)"| Explain["EXPLAIN"]
+    Choice -->|"Custo real medido<br/>(o que aconteceu de fato)"| Analyze["EXPLAIN ANALYZE"]
+
+    Explain --> ExplainOut["Plano lógico/físico:<br/>operadores, ordem de joins,<br/>predicados aplicados<br/><br/>⚡ Não roda a query"]
+
+    Analyze --> Run["Roda a query"]
+    Run --> AnalyzeOut["Plano + estatísticas:<br/>linhas processadas,<br/>tempo por operador,<br/>volume lido por TableScan<br/><br/>💰 Cobra como qualquer query"]
+
+    style Explain fill:#e6f7ff,stroke:#0066cc
+    style Analyze fill:#fff5e6,stroke:#cc7a00
+    style ExplainOut fill:#e6f7ff
+    style AnalyzeOut fill:#fff5e6
+```
+
+> [!TIP]
+> **Quando usar cada um**: `EXPLAIN` quando você quer **planejar antes** (a query ainda nem foi escrita ou você está iterando no design). `EXPLAIN ANALYZE` quando a query já existe e está lenta — você precisa do dado real do operador que está consumindo recurso para decidir onde otimizar.
+
 ---
 
 <a id="passo-3"></a>

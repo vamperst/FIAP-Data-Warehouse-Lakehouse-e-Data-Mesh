@@ -64,6 +64,38 @@ Ao final deste laboratório, você terá criado uma tabela Iceberg no Athena, ca
 > [!TIP]
 > Se travou em algum passo, você pode pular direto: clique no número do passo na coluna **Passos** acima.
 
+## Linha do tempo da tabela `customer_iceberg`
+
+A tabela vai mudar de estado várias vezes ao longo do lab. Cada operação confirmada gera um **novo snapshot**, e nenhum snapshot anterior é apagado — é isso que viabiliza o time travel no fim. Este é o destino que vamos construir:
+
+```mermaid
+timeline
+    title Snapshots gerados ao longo do laboratório
+    section Parte 3
+      Cria tabela : tabela vazia
+                  : sem snapshots
+    section Parte 5
+      Snapshot 1 — append : INSERT 2M registros
+                          : operation = append
+    section Parte 7
+      Snapshot 2 — overwrite : UPDATE c_customer_sk = 15
+                             : c_last_name = John
+    section Parte 8
+      Snapshot 3 — overwrite : DELETE c_customer_sk = 15
+    section Parte 9
+      Time travel : SELECT FOR VERSION AS OF snapshot 1
+                  : volta ao estado pós-INSERT
+                  : SELECT FOR VERSION AS OF snapshot 2
+                  : volta ao estado pós-UPDATE
+    section Parte 10
+      Evolução de esquema : ALTER COLUMN rename
+                          : ADD COLUMN c_birth_date
+                          : sem novos arquivos de dados
+```
+
+> [!NOTE]
+> Em formatos abertos como Iceberg, **alterar a tabela ≠ apagar o passado**. Cada `INSERT`, `UPDATE`, `DELETE` cria uma nova versão consultável. Esse é o ponto que diferencia uma tabela Iceberg de um simples conjunto de arquivos Parquet.
+
 ---
 
 ## Parte 1 - Pré-requisitos e criação do ambiente
@@ -785,6 +817,35 @@ Documentação oficial:
 ### Resultado esperado desta parte
 
 Ao final desta etapa, você terá consultado versões anteriores da tabela usando snapshot e timestamp.
+
+### Como o Athena resolve um SELECT com `FOR VERSION AS OF`
+
+Quando você pede um snapshot anterior, o Athena **não** restaura backup nem clona arquivos. Ele apenas navega na cadeia de metadados e lê os arquivos físicos que pertenciam àquela versão:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Aluno
+    participant Athena
+    participant Catalog as Iceberg Catalog
+    participant Meta as metadata.json
+    participant Manifest as manifest list
+    participant S3 as data files (.parquet)
+
+    Aluno->>Athena: SELECT * FROM customer_iceberg<br/>FOR VERSION AS OF 5418594889737463157
+    Athena->>Catalog: qual o ponteiro atual?
+    Catalog-->>Athena: metadata.json mais recente
+    Athena->>Meta: lê lista de snapshots
+    Meta-->>Athena: snapshot_id 5418... encontrado
+    Athena->>Manifest: lê manifest list daquele snapshot
+    Manifest-->>Athena: manifests vigentes naquele momento
+    Athena->>S3: lê só os data files daquele snapshot
+    S3-->>Athena: linhas pré-DELETE
+    Athena-->>Aluno: cliente Tonya com sobrenome John
+```
+
+> [!IMPORTANT]
+> O time travel **não** copia dados. O Iceberg só "esquece" os arquivos antigos quando você roda `VACUUM` ou `expire_snapshots` — até lá, todas as versões são consultáveis sem custo extra de armazenamento (os arquivos já existiam).
 
 ---
 
