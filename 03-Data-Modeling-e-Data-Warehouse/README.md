@@ -482,7 +482,7 @@ Início da aula
     │
     ▼
 cd 03-Data-Modeling-e-Data-Warehouse/01-provisionamento
-terraform init && terraform apply            ← 5-8 min
+bash scripts/init.sh && terraform apply -auto-approve   ← 5-8 min
     │
     ▼
 bash scripts/load_tpch.sh                    ← 3-5 min (download + upload + customer_history)
@@ -510,7 +510,7 @@ bash scripts/load_tpch.sh                    ← 3-5 min (download + upload + cu
     │
     ▼
 Fim da aula
-cd ../01-provisionamento && terraform destroy  ← preserva budget
+cd ../01-provisionamento && terraform destroy -auto-approve  ← preserva budget
 ```
 
 ---

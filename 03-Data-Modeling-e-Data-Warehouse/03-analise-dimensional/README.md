@@ -1379,10 +1379,10 @@ Você deve ver o `redshift_cluster_identifier`, `s3_bucket_name` e `glue_databas
 
 ```bash
 cd /workspaces/FIAP-Data-Warehouse-Lakehouse-e-Data-Mesh/03-Data-Modeling-e-Data-Warehouse/01-provisionamento
-terraform destroy
+terraform destroy -auto-approve
 ```
 
-O Terraform vai listar os **15 recursos** que serão deletados e pedir confirmação. Digite `yes` e aguarde.
+O Terraform vai listar os **15 recursos** que serão deletados e iniciar a remoção imediatamente (a flag `-auto-approve` pula o "type 'yes' to confirm").
 
 > [!NOTE]
 > O destroy leva tipicamente **3 a 5 minutos**. O cluster Redshift é o mais demorado de destruir (~3 minutos) porque o serviço precisa liberar storage, snapshots e ENIs associadas.
@@ -1406,7 +1406,7 @@ O Terraform lê o `terraform.tfstate` local, identifica todos os recursos gerenc
 
 ### Se der erro no meio do destroy
 
-Rode `terraform destroy` novamente. O Terraform é **idempotente** — ele só tenta destruir o que ainda existe. Causas comuns:
+Rode `terraform destroy -auto-approve` novamente. O Terraform é **idempotente** — ele só tenta destruir o que ainda existe. Causas comuns:
 
 - Cluster Redshift em estado `modifying`: aguarde 30s e tente de novo
 - Dependência temporária não liberada (ex: ENI presa): espere 1-2 min e repita
@@ -1464,7 +1464,7 @@ Se você chegou até aqui, então:
 - o Codespaces foi parado
 
 > [!TIP]
-> Você pode recriar todo o ambiente em qualquer outra aula rodando `terraform apply` novamente — leva 5-8 minutos e reproduz exatamente o mesmo estado. Essa é a beleza de infra como código.
+> Você pode recriar todo o ambiente em qualquer outra aula rodando `terraform apply -auto-approve` novamente — leva 5-8 minutos e reproduz exatamente o mesmo estado. Essa é a beleza de infra como código.
 
 ---
 

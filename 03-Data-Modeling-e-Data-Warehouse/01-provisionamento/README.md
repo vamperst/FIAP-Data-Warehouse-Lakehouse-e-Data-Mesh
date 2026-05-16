@@ -70,10 +70,10 @@ Se ambos funcionarem, prossiga.
 ```bash
 cd /workspaces/FIAP-Data-Warehouse-Lakehouse-e-Data-Mesh/03-Data-Modeling-e-Data-Warehouse/01-provisionamento
 bash scripts/init.sh
-terraform apply
+terraform apply -auto-approve
 ```
 
-Tempo típico: **1m20 a 5 minutos** (o Redshift é o que mais demora; 2 nós ra3.large levam ~1m20 quando a região tem capacidade).
+Tempo típico: **1m20 a 5 minutos** (o Redshift é o que mais demora; 2 nós ra3.large levam ~1m20 quando a região tem capacidade). A flag `-auto-approve` pula o "type 'yes' to confirm" — esse lab é sobre modelagem dimensional, não sobre rituais do Terraform.
 
 <!-- PRINT SUGERIDO: img/terraform_apply_sucesso.png
      Saída final do terraform apply: linha "Apply complete! Resources: 15 added"
@@ -140,7 +140,7 @@ Alguma conta do Learner Lab não vem com VPC default. Crie uma e rode `apply` no
 
 ```bash
 aws ec2 create-default-vpc
-terraform apply
+terraform apply -auto-approve
 ```
 
 </blockquote>
@@ -312,10 +312,10 @@ Abra o próximo lab: **[Lab 03.2 — Do OLTP ao Star Schema](../02-modelagem-e-c
 
 ```bash
 cd /workspaces/FIAP-Data-Warehouse-Lakehouse-e-Data-Mesh/03-Data-Modeling-e-Data-Warehouse/01-provisionamento
-terraform destroy
+terraform destroy -auto-approve
 ```
 
-Tempo típico: **3 a 5 minutos**. Remove cluster, subnet group, SG, bucket (com `force_destroy`), Glue database.
+Tempo típico: **3 a 5 minutos**. Remove cluster, subnet group, SG, bucket (com `force_destroy`), Glue database. A flag `-auto-approve` pula a confirmação manual.
 
 > [!NOTE]
 > O `terraform destroy` deixa o arquivo `terraform.tfstate` no bucket `base-config-*` em estado vazio (sem recursos). Isso é correto — o state vira o registro auditável de que o ambiente foi desprovisionado. Não apague o bucket `base-config-*`, ele é usado por outros labs do MBA.

@@ -1875,7 +1875,7 @@ No [Lab 03.3](../03-analise-dimensional/README.md) você vai partir do schema qu
 >
 > ```bash
 > cd /workspaces/FIAP-Data-Warehouse-Lakehouse-e-Data-Mesh/03-Data-Modeling-e-Data-Warehouse/01-provisionamento
-> terraform destroy
+> terraform destroy -auto-approve
 > ```
 >
 > O cluster Redshift continua consumindo budget mesmo ocioso. Esquecer ligado por 1 dia = ~$12 do orçamento do Learner Lab. O destroy completo leva ~5-8 minutos.
